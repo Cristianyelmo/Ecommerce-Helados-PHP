@@ -23,7 +23,7 @@
 
 <div class="flex justify-center lg:mt-[200px]">
 
-<p class="text-center font-extrabold text-5xl text-contorno">☆Helados Crema del Cielo☆</p>
+<p class="text-center font-extrabold text-5xl text-contorno">Helados Crema del Cielo</p>
 
 </div>
 

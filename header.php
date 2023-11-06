@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="../style.css">
+
 <!-- owl-carrusel -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
@@ -27,39 +28,89 @@
 <header class="bg-[url('img/nubes-header2.png')] h-[140px] sm:h-[180px] md:h-[220px] lg:h-[250px] xl:h-[280px] bg-cover  bg-no-repeat 	  top-0 left-0 z-20">
    
 
-<nav>
+<nav class="md:hidden">
       <div class="navbar">
       
         <div class="container nav-container">
             <input class="checkbox" type="checkbox" name="" id="" />
-            <div class="flex justify-center pt-3">
+            <div class="flex justify-center pt-3 ">
 <img src='img/Logo.svg' class='pr-2'>
 <div class="flex flex-col">
   <h1>Creama del Cielo</h1>
   <h2>Heladeria</h2>
 </div>
 </div>
-            <div class="hamburger-lines z-20">
+
+
+
+            <div class="hamburger-lines z-20 ">
               <span class="line line1"></span>
               <span class="line line2"></span>
               <span class="line line3"></span>
        
             </div>  
           
-          <div class="menu-items " style="
+          <div class="menu-items" style="
     background: #ffd4d49c;
 ">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">about</a></li>
-            <li><a href="#">blogs</a></li>
-            <li><a href="#">portfolio</a></li>
-            <li><a href="#">contact</a></li>
+            <li><a href="index.php"><span class="material-symbols-outlined">
+home
+</span>  Home </a></li>
+            <li><a href="login.php"><span class="material-symbols-outlined">
+login
+</span> Login</a></li>
+            <li><a href="#"><span class="material-symbols-outlined">
+account_circle
+</span> Hola,user</a></li>
+            <li><a href="cart.php"><span class="material-symbols-outlined">
+shopping_cart
+</span> Cart (0) </a></li>
+           
           </div>
+
+       
+
+
+
         </div>
        
       </div>
 
    
+    </nav>
+
+
+    <nav class="hidden md:block md:flex md:justify-between">
+
+    <div class="flex justify-center pt-3 ml-8">
+<img src='img/Logo.svg' class='pr-2'>
+<div class="flex flex-col">
+  <h1>Creama del Cielo</h1>
+  <h2>Heladeria</h2>
+</div>
+</div>
+
+
+
+
+
+<ul class="flex list-none mr-8 mt-4 space-x-6">
+
+
+<li><a href="index.php"><span class="material-symbols-outlined ml-[8px]">
+home
+</span> <p> Home</p> </a></li>
+            <li><a href="login.php"><span class="material-symbols-outlined ml-[8px]">
+login
+</span>  <p> Login</p</a></li>
+            <li><a href="#"><span class="material-symbols-outlined ml-[8px]">
+account_circle
+</span> <p> Hola,user</p></a></a> </li>
+            <li><a href="cart.php"><span class="material-symbols-outlined ml-[8px]">
+shopping_cart
+</span> <p>Cart (0)</p> </a></li>
+
+      </ul>
     </nav>
 </header>
 
