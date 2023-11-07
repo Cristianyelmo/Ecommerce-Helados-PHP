@@ -54,4 +54,5 @@ window.addEventListener("load", function () {
 
   </script>
   <script src="../register.js"></script>
+  <script src="../admin-photo.js"></script>
 </html>
