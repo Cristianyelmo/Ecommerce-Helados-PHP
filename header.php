@@ -21,7 +21,16 @@
     </div>
 
     <div id="content" style="display: none;" >
-      
+    <?php
+session_start();
+
+
+
+
+
+
+
+?>
    
 <body  class="bg-cover h-screen bg-no-repeat bg-fixed	  top-0 left-0  bg-[url('img/background-image.jpg')]">
  
@@ -100,12 +109,43 @@ shopping_cart
 <li><a href="index.php"><span class="material-symbols-outlined ml-[8px]">
 home
 </span> <p> Home</p> </a></li>
-            <li><a href="login.php"><span class="material-symbols-outlined ml-[8px]">
-login
-</span>  <p> Login</p</a></li>
+
+
+<?php
+
+if(isset($_SESSION['userxd'])){
+
+
+         echo "<li><a href='logout.php'><span class='material-symbols-outlined'>
+         logout
+         </span><p> Logout</p</a></li>";
+}else{
+  echo "<li><a href='login.php'><span class='material-symbols-outlined ml-[8px]'>
+  login
+  </span><p> Login</p</a></li>";
+}
+
+
+
+?>
+
+
+
+
             <li><a href="#"><span class="material-symbols-outlined ml-[8px]">
 account_circle
-</span> <p> Hola,user</p></a></a> </li>
+</span> <p> Hola,<?php
+if(isset($_SESSION['userxd'])){
+
+
+  echo $_SESSION['userxd'];
+}else{
+echo "user";
+}
+
+
+
+?></p></a></a> </li>
             <li><a href="cart.php"><span class="material-symbols-outlined ml-[8px]">
 shopping_cart
 </span> <p>Cart (0)</p> </a></li>
