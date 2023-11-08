@@ -40,7 +40,7 @@ if(mysqli_num_rows($result)){
 
 
 }else if (mysqli_num_rows($result_admin)){
-    $fila_admin = mysqli_fetch_assoc($result);
+    $fila_admin = mysqli_fetch_assoc($result_admin);
     $_SESSION['adminxd'] = $fila_admin['username'];
 
     echo "

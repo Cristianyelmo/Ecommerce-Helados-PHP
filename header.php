@@ -24,7 +24,14 @@
     <?php
 session_start();
 
+$count= 0;
+if(isset($_SESSION['cart'])){
 
+$count=count($_SESSION['cart']);
+
+
+
+}
 
 
 
@@ -106,9 +113,7 @@ shopping_cart
 <ul class="flex list-none mr-8 mt-4 space-x-6">
 
 
-<li><a href="index.php"><span class="material-symbols-outlined ml-[8px]">
-home
-</span> <p> Home</p> </a></li>
+
 
 
 <?php
@@ -116,15 +121,51 @@ home
 if(isset($_SESSION['userxd'])){
 
 
-         echo "<li><a href='logout.php'><span class='material-symbols-outlined'>
+         echo "
+
+         <li><a href='index.php'><span class='material-symbols-outlined ml-[8px]'>
+         home
+         </span> <p> Home</p> </a></li>
+
+
+         <li><a href='logout.php'><span class='material-symbols-outlined'>
          logout
-         </span><p> Logout</p</a></li>";
-}else{
-  echo "<li><a href='login.php'><span class='material-symbols-outlined ml-[8px]'>
-  login
-  </span><p> Login</p</a></li>";
+         </span><p> Logout</p</a></li>
+         
+         <li><a href='cart.php'><span class='material-symbols-outlined ml-[8px]'>
+         shopping_cart
+         </span> <p>Cart  ($count)</p> </a></li>";
 }
 
+else if(isset($_SESSION['adminxd'])){
+
+
+  echo "
+
+         <li><a href='../user/index.php'><span class='material-symbols-outlined ml-[8px]'>
+         home
+         </span> <p> Home</p> </a></li>
+         <li><a href='../admin/post-delete-admin.php'><span class='material-symbols-outlined ml-[8px]'>
+         home
+         </span> <p>Agregar Producto</p> </a></li>
+
+         <li><a href='../user/logout.php'><span class='material-symbols-outlined'>
+         logout
+         </span><p> Logout</p</a></li>
+         
+       ";;
+}else{
+echo "
+<li><a href='index.php'><span class='material-symbols-outlined ml-[8px]'>
+         home
+         </span> <p> Home</p> </a></li>
+<li><a href='login.php'><span class='material-symbols-outlined ml-[8px]'>
+login
+</span><p> Login</p</a></li>
+<li><a href='cart.php'><span class='material-symbols-outlined ml-[8px]'>
+         shopping_cart
+         </span> <p>Cart (0)</p> </a></li>";
+}
 
 
 ?>
@@ -139,16 +180,19 @@ if(isset($_SESSION['userxd'])){
 
 
   echo $_SESSION['userxd'];
+}else if(isset($_SESSION['adminxd'])) {
+
+  echo $_SESSION['adminxd'];
+
+
 }else{
-echo "user";
+  echo "user";
 }
 
 
 
 ?></p></a></a> </li>
-            <li><a href="cart.php"><span class="material-symbols-outlined ml-[8px]">
-shopping_cart
-</span> <p>Cart (0)</p> </a></li>
+         
 
       </ul>
     </nav>
