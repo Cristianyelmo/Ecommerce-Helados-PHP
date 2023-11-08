@@ -83,14 +83,40 @@ if(isset($_POST['remove'])){
 
 
 if(isset($_POST['mas'])){
-    $_SESSION['contador']++;
+
+    if (isset($_POST["numero"])) {
+        $_SESSION['contador'] =(int)$_POST["numero"];
+    }
+    
     foreach($_SESSION['cart'] as $key => $value){
         if($value['productName'] === $_POST['item'] ){
         
-
+            $_SESSION['contador']++;
             $_SESSION['cart'][$key]=array('productName' =>
             $product_name, 'productPrice' => $product_price,
-            'productQuantity' =>  $product_quantity ,'productImage' => $product_image
+            'productQuantity' =>  $_SESSION['contador'] ,'productImage' => $product_image
+           );
+            header('location:cart.php');
+            exit;
+
+            
+        }
+    }
+}
+
+if(isset($_POST['menos'])){
+
+    if (isset($_POST["numero"])) {
+        $_SESSION['contador'] =(int)$_POST["numero"];
+    }
+    
+    foreach($_SESSION['cart'] as $key => $value){
+        if($value['productName'] === $_POST['item'] ){
+        
+            $_SESSION['contador']--;
+            $_SESSION['cart'][$key]=array('productName' =>
+            $product_name, 'productPrice' => $product_price,
+            'productQuantity' =>  $_SESSION['contador'] ,'productImage' => $product_image
            );
             header('location:cart.php');
             exit;

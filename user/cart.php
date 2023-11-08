@@ -13,11 +13,20 @@
 <div class="bg-[#FFFFFF] bg-opacity-30 shadow-custom  m-3 p-4 max-w-xl flex flex-col justify-center">
 <?php
 
-echo $_SESSION['contador'];
-echo var_dump($_SESSION['contador']);
+
+$hola=$_SESSION['contador'];
+$total=0;
+$hoy = getdate();
+$_SESSION['total_price']=$total;
+
+$fecha = "" . $hoy['mday'] . "/ " . $hoy['mon'] . " /" . $hoy['year'] . "";
+print_r($fecha);
+
+
 if(isset($_SESSION['cart'])){
  
     foreach($_SESSION['cart'] as  $key =>  $value){
+        $total += $value['productPrice'] * $hola;
 
 
 echo "
@@ -59,7 +68,7 @@ echo "
 cancel
 </span></button>
 <h2 class='text-center font-extrabold'>$value[productName]</h2>
-<p class='text-center text-3xl'>2.500$</p>
+<p class='text-center text-3xl'>$value[productPrice] </p>
 
 
 <div class='flex justify-center space-x-4 mb-6 mt-6'>
@@ -77,7 +86,7 @@ cancel
 <input type='hidden' name='price' value='$value[productPrice]'> 
 <input type='hidden' name='image' value='$value[productImage]'> 
 
-
+<input type='hidden' name='numero' value='$hola'>
 
 
 </div>
@@ -111,13 +120,13 @@ cancel
 
 <div class="bg-[#FFFFFF] bg-opacity-30 shadow-custom  m-3 p-4 max-w-xl flex flex-col justify-center">
 
-
+<form action="buy-now.php" method="POST">
 <h2 class="text-center font-extrabold text-3xl">Total</h2>
-<h3 class="text-center">2.500$</h3>
+<h3 class="text-center"><?php echo number_format($total,2)  ?></h3>
 <div class="text-center">
-<button class="bg-[#E97C8D] p-4 border border-3 border-black rounded-[40.5px] text-center">Buy Now</button>
+<button name='buy' class="bg-[#E97C8D] p-4 border border-3 border-black rounded-[40.5px] text-center">Buy Now</button>
 </div>
-
+<form>
 </div>
 
 
