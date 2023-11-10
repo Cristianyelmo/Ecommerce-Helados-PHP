@@ -10,6 +10,8 @@
 <input name='namexd' type="text" id="campo-texto" class="border-2 shadow-custom border-black bg-transparent p-2 w-full">
 <h2>precio del producto</h2>
  <input type="text"  name='price' id="campo-password"  class="border-2 shadow-custom border-black bg-transparent p-2 w-full">
+ <h2>stock</h2>
+ <input type="number" name='stock'    class="border-2 shadow-custom border-black bg-transparent p-2 w-full">
  <h2>Imagen del producto</h2>
  <input type="file" name='imagexd'  id="image-input"   class="border-2 shadow-custom border-black bg-transparent p-2 w-full">
 
@@ -43,6 +45,7 @@
         <th scope="col" class="border p-2 text-center">Id</th>
       <th scope="col" class="border p-2 text-center">Name</th>
       <th scope="col" class="border p-2 text-center">Price</th>
+      <th scope="col" class="border p-2 text-center">Stock</th>
       <th scope="col" class="border p-2 text-center">Image</th>
       <th scope="col" class="border p-2 text-center">Category</th>
       <th scope="col" class="border p-2 text-center">Delete</th>
@@ -50,7 +53,7 @@
         </tr>
 
 
-
+        <tr class='flex flex-col' >
 <?php
 
 include 'Config.php';
@@ -58,19 +61,51 @@ include 'Config.php';
 $record= mysqli_query($con,"SELECT * FROM `producto`");
 
 
-while($row = mysqli_fetch_array($record))
+$rows2 = array();
+while ($rowsxd = mysqli_fetch_array($record)) {
+    $rows2[] = $rowsxd;
+}
 
-echo
-       " <tr>
-            <td class='border p-2 text-center'>$row[id]</td>
-            <td class='border p-2 text-center'>$row[name]</td>
-            <td class='border p-2 text-center'>$row[price]</td>
-            <td class='border p-2 text-center'><img src='$row[image]' class='w-[60px]' alt=''></td>
-            <td class='border p-2 text-center'>$row[categoria]</td>
-            <td class='border p-2 text-center'><a href='delete.php?ID=$row[id]'>Delete</a></td>
-            <td class='border p-2 text-center'><a href='update.php?ID=$row[id]'>Update</a></td>
-        </tr>";
+
+
+
+foreach ($rows2 as $row) {
+  
+
+      
+        echo "
+            <tr>
+                <td class='border p-2 text-center'>$row[id]</td>
+                <td class='border p-2 text-center'>$row[name]</td>
+                <td class='border p-2 text-center'>$row[price]</td>
+                <td class='border p-2 text-center'> $row[stock]</td>
+                <td class='border p-2 text-center'><img src='$row[image]' class='w-[60px]' alt=''></td>
+                <td class='border p-2 text-center'>$row[categoria]</td>
+                <td class='border p-2 text-center'><a href='delete.php?ID=$row[id]'>Delete</a></td>
+                <td class='border p-2 text-center'><a href='update.php?ID=$row[id]'>Update</a></td>
+            </tr>";
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
         ?>
+
+</tr>
+
     </table>
 
 

@@ -17,7 +17,7 @@
 $hola=$_SESSION['contador'];
 $total=0;
 $hoy = getdate();
-$_SESSION['total_price']=$total;
+
 
 $fecha = "" . $hoy['mday'] . "/ " . $hoy['mon'] . " /" . $hoy['year'] . "";
 print_r($fecha);

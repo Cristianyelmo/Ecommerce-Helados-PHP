@@ -9,6 +9,7 @@ $product_name=$_POST['name'];
 $product_price=$_POST['price'];
 $product_image=$_POST['image'];
 $_SESSION['contador'] = 1;
+
 $product_quantity=1;
 
 
@@ -40,7 +41,8 @@ window.location.href = 'index.php'
 
  $_SESSION['cart'][] =  array('productName' =>
  $product_name, 'productPrice' => $product_price,
- 'productQuantity' => $product_quantity,'productImage' => $product_image
+ 'productQuantity' => $product_quantity,'productImage' => $product_image,
+ 'total_product'=> $product_price * $_SESSION['contador']
 );
  header('location:cart.php');
 };
@@ -55,7 +57,8 @@ window.location.href = 'index.php'
     }else{
         $_SESSION['cart'][] =  array('productName' =>
         $product_name, 'productPrice' => $product_price,
-        'productQuantity' => $product_quantity,'productImage' => $product_image
+        'productQuantity' => $product_quantity,'productImage' => $product_image,
+        'total_product'=> $product_price * $_SESSION['contador']
     );
     header('location:cart.php');
     
@@ -94,7 +97,8 @@ if(isset($_POST['mas'])){
             $_SESSION['contador']++;
             $_SESSION['cart'][$key]=array('productName' =>
             $product_name, 'productPrice' => $product_price,
-            'productQuantity' =>  $_SESSION['contador'] ,'productImage' => $product_image
+            'productQuantity' =>  $_SESSION['contador'] ,'productImage' => $product_image,
+            'total_product'=> $product_price * $_SESSION['contador']
            );
             header('location:cart.php');
             exit;
@@ -116,7 +120,8 @@ if(isset($_POST['menos'])){
             $_SESSION['contador']--;
             $_SESSION['cart'][$key]=array('productName' =>
             $product_name, 'productPrice' => $product_price,
-            'productQuantity' =>  $_SESSION['contador'] ,'productImage' => $product_image
+            'productQuantity' =>  $_SESSION['contador'] ,'productImage' => $product_image,
+            'total_product'=> $product_price * $_SESSION['contador']
            );
             header('location:cart.php');
             exit;
