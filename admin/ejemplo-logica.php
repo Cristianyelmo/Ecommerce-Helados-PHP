@@ -235,6 +235,63 @@ mysqli_query($con, $query_update_stock);
 
 
 
+<?php
+
+// Supongamos que $productoArray es tu array con la información del producto
+$productoArray = array(
+    'id' => 123,
+    'cantidad' => 5, // La cantidad que se restará al stock
+    // ... otras propiedades del producto
+);
+
+// Conexión a la base de datos
+$Con = mysqli_connect("tu_host", "tu_usuario", "tu_contraseña", "tu_base_de_datos");
+
+// Verificar la conexión
+if (mysqli_connect_errno()) {
+    echo "Error al conectar a MySQL: " . mysqli_connect_error();
+    exit();
+}
+
+// Obtener el producto de la base de datos
+$idProducto = $productoArray['id'];
+$resultado = mysqli_query($Con, "SELECT * FROM `producto` WHERE id = $idProducto");
+
+// Verificar si se obtuvo el producto
+if ($resultado) {
+    $productoBD = mysqli_fetch_assoc($resultado);
+
+    // Verificar si el producto existe en la base de datos
+    if ($productoBD) {
+        // Restar la cantidad al stock
+        $nuevoStock = $productoBD['stock'] - $productoArray['cantidad'];
+
+        // Actualizar el stock en la base de datos
+        mysqli_query($Con, "UPDATE `producto` SET stock = $nuevoStock WHERE id = $idProducto");
+
+        // Realizar una condicional basada en el resultado
+        if ($nuevoStock >= 0) {
+            echo "Operación exitosa. Nuevo stock: $nuevoStock";
+        } else {
+            echo "No hay suficiente stock disponible.";
+        }
+    } else {
+        echo "El producto no existe en la base de datos.";
+    }
+
+    // Liberar el resultado
+    mysqli_free_result($resultado);
+} else {
+    echo "Error en la consulta: " . mysqli_error($Con);
+}
+
+// Cerrar la conexión
+mysqli_close($Con);
+
+?>
+
+
+
 
 
     ?>
