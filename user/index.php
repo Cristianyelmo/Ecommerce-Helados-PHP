@@ -51,17 +51,34 @@
 
  <section>
 <h1 class="text-center mt-[90px] font-extrabold text-3xl">CATEGORIAS</h1>
+
+
+
+
 <div class='flex flex-wrap justify-center mt-[90px]'>
+
+  <a href="category.php?categoriaxd=Helado">
 <div class="bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
 <h2 class='text-right font-extrabold text-4xl'>Helados</h2>
 <img src='img/helado-limon.png ' class='h-[520px]' >
 
 </div>
+
+</a>
+
+
+
+
+<a href="category.php?categoriaxd=Palito">
 <div class="relative bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
 <h2 class='text-right font-extrabold text-4xl'>Postres</h2>
 <img src='img/postre.png ' class='h-[320px] '  >
 
 </div>
+
+</a>
+
+
 <div class="bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
 <h2 class='text-right font-extrabold text-4xl'>Helados</h2>
 <img src='img/helado-limon.png ' class='h-[520px]' >

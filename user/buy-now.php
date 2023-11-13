@@ -27,8 +27,15 @@ $resultado = mysqli_query($Con, "SELECT * FROM `producto` WHERE name = '$value[p
 $productoBD = mysqli_fetch_assoc($resultado);
 if($productoBD){
     echo "<script>
-    alert('el producto $value[productName] solo quedan $value[productQuantity]  ')
-    window.location.href='cart.php'
+    if($productoBD[stock] === 0){
+        alert('no hay stock')
+        window.location.href='cart.php'
+
+    }else{
+        alert('el producto $value[productName] solo quedan $productoBD[stock]  ')
+        window.location.href='cart.php'
+    }
+   
     
     </script>";
    
