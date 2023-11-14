@@ -94,6 +94,27 @@ if(isset($_POST['mas'])){
     foreach($_SESSION['cart'] as $key => $value){
         if($value['productName'] === $_POST['item'] ){
         
+
+
+            $Con=mysqli_connect('localhost',
+            'root','','ecommerce-helados-php');
+
+$resultado = mysqli_query($Con, "SELECT * FROM `producto` WHERE name = '$product_name' AND stock <=  $_SESSION[contador]");
+$productoBD = mysqli_fetch_assoc($resultado);
+
+if($productoBD){
+
+
+
+          
+            $_SESSION['cart'][$key]=array('productName' =>
+            $product_name, 'productPrice' => $product_price,
+            'productQuantity' =>  $_SESSION['contador'] ,'productImage' => $product_image,
+            'total_product'=> $product_price * $_SESSION['contador']
+           );
+            header('location:cart.php');
+            exit;
+        }else{
             $_SESSION['contador']++;
             $_SESSION['cart'][$key]=array('productName' =>
             $product_name, 'productPrice' => $product_price,
@@ -103,6 +124,7 @@ if(isset($_POST['mas'])){
             header('location:cart.php');
             exit;
 
+        }
             
         }
     }
@@ -116,7 +138,16 @@ if(isset($_POST['menos'])){
     
     foreach($_SESSION['cart'] as $key => $value){
         if($value['productName'] === $_POST['item'] ){
-        
+        if($_SESSION['contador'] == 1){
+           
+            $_SESSION['cart'][$key]=array('productName' =>
+            $product_name, 'productPrice' => $product_price,
+            'productQuantity' =>  $_SESSION['contador'] ,'productImage' => $product_image,
+            'total_product'=> $product_price * $_SESSION['contador']
+           );
+            header('location:cart.php');
+            exit;
+        }else{
             $_SESSION['contador']--;
             $_SESSION['cart'][$key]=array('productName' =>
             $product_name, 'productPrice' => $product_price,
@@ -126,6 +157,7 @@ if(isset($_POST['menos'])){
             header('location:cart.php');
             exit;
 
+        }
             
         }
     }
