@@ -17,10 +17,11 @@
 $hola=$_SESSION['contador'];
 $total=0;
 $hoy = getdate();
-
+print_r($hola);
 
 $fecha = "" . $hoy['mday'] . "/ " . $hoy['mon'] . " /" . $hoy['year'] . "";
-print_r($fecha);
+
+
 
 
 if(isset($_SESSION['cart'])){
