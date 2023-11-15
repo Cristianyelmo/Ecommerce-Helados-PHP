@@ -1,5 +1,19 @@
 <?php include '../header.php'?>
+<?php
 
+if(isset($_SESSION['errors']) && count( $_SESSION['errors'])!== 0){
+foreach($_SESSION['errors'] as $error){
+    echo '<li>' .  $error .   '<li>';
+}
+}
+
+
+
+
+
+
+
+?>
 <section class="flex justify-center ">
     <div  class="bg-[#FFFFFF] bg-opacity-30 shadow-custom m-3 p-4 w-[500px]" >
     <h2 class="text-4xl text-center font-extrabold">Register</h2>
@@ -15,6 +29,8 @@
 <input name="name" type="text" id="campo-texto" class="border-2 shadow-custom border-black bg-transparent p-2 w-full">
 <h2>password</h2>
  <input name="password" type="password" id="campo-password"  class="border-2 shadow-custom border-black bg-transparent p-2 w-full">
+ <h2>repassword</h2>
+ <input name="repassword" type="password" id="campo-password"  class="border-2 shadow-custom border-black bg-transparent p-2 w-full">
  <!-- <h2>password</h2>
  <input type="password" id="campo-password"  class="border-2 shadow-custom border-black bg-transparent p-2 w-full"> -->
 
