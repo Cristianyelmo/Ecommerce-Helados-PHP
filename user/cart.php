@@ -14,10 +14,77 @@
 <?php
 
 
+
+
+/* Script de Mercado Pago */
+
+require '../vendor/autoload.php';
+use MercadoPago\MercadoPagoConfig;
+
+// Agrega credenciales
+MercadoPagoConfig::setAccessToken('TEST-3595623694248600-111320-f1fe6a0c6633f5efe8d0d4d76506a75b-424046411');
+
+
+
+
+
+$items=array();
+
+// Iterar sobre cada producto y agregarlo al array de ítems
+if ($_SESSION['cart'] !== null) {
+    foreach ($_SESSION['cart'] as $key => $value) {
+       
+
+        $items[] = array(
+            "title" => "$value[productName]",
+            "quantity" => floatval($value['productQuantity']),
+            
+            "currency_id" => "BRL",
+            "unit_price" => floatval($value['productPrice'])
+        );
+    }
+} else {
+    echo 'El carrito está vacío.';
+}
+
+
+
+$client = new MercadoPago\Client\Preference\PreferenceClient();
+
+try {
+    
+    $preference = $client->create([
+        "items" => $items
+    ]);
+    
+ 
+    // Resto del código si la creación es exitosa
+} catch (\MercadoPago\Exceptions\MPApiException $e) {
+    echo 'Error al crear la preferencia: ' . $e->getMessage();
+    
+    // Imprimir la respuesta cruda de la API en formato JSON si está disponible
+    if (method_exists($e, 'getResponse')) {
+        echo 'Respuesta cruda de la API: ' . json_encode($e->getResponse());
+    }
+}
+$preference->back_urls = array(
+    "success" => "http://localhost/Ecommerce-Helados/user/buy-now.php",
+    "failure" => "http://localhost/Ecommerce-Helados/user/falla.php",
+    "pending" => "http://localhost/Ecommerce-Helados/user/falla.php"
+);
+$preference->auto_return = "approved";
+
+/* Script de Mercado Pago */
+
+
+
+
+/* Script de Carrito Session */
+
 $hola=$_SESSION['contador'];
 $total=0;
 $hoy = getdate();
-print_r($hola);
+
 
 $fecha = "" . $hoy['mday'] . "/ " . $hoy['mon'] . " /" . $hoy['year'] . "";
 
@@ -109,7 +176,7 @@ cancel
 }
 
 }
-
+/* Script de Carrito Session */
 ?>
 
 <!--  -->
@@ -121,13 +188,14 @@ cancel
 
 <div class="bg-[#FFFFFF] bg-opacity-30 shadow-custom  m-3 p-4 max-w-xl flex flex-col justify-center">
 
-<form action="buy-now.php" method="POST">
+
 <h2 class="text-center font-extrabold text-3xl">Total</h2>
 <h3 class="text-center"><?php echo number_format($total,2)  ?></h3>
 <div class="text-center">
-<button name='buy' class="bg-[#E97C8D] p-4 border border-3 border-black rounded-[40.5px] text-center">Buy Now</button>
+<!-- <button name='buy' class="bg-[#E97C8D] p-4 border border-3 border-black rounded-[40.5px] text-center">Buy Now</button> -->
+<div id="wallet_container"></div>
 </div>
-<form>
+
 </div>
 
 
@@ -138,9 +206,19 @@ cancel
 
 </section>
 
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
 
+const mp = new MercadoPago('TEST-37ca75f7-cda7-41ca-801e-0a13bbb29151');
+const bricksBuilder = mp.bricks();
 
+mp.bricks().create("wallet", "wallet_container", {
+   initialization: {
+       preferenceId: '<?php echo $preference->id ?>',
+   },
+});
 
+</script>
 
 
 

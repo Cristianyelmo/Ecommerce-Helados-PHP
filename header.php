@@ -40,7 +40,7 @@ $count=count($_SESSION['cart']);
 ?>
    
 <body  class="bg-cover h-screen bg-no-repeat bg-fixed	  top-0 left-0  bg-[url('img/background-image.jpg')]">
- 
+
 <header class="bg-[url('img/nubes-header2.png')] h-[140px] sm:h-[180px] md:h-[220px] lg:h-[250px] xl:h-[280px] bg-cover  bg-no-repeat 	  top-0 left-0 z-20">
    
 

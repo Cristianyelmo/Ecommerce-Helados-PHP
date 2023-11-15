@@ -7,7 +7,7 @@ $user=$_SESSION['userxd'];
 
 $Con=mysqli_connect('localhost',
 'root','','ecommerce-helados-php');
-if(isset($_POST['buy'])){
+
 
 
     if(isset($_SESSION['cart'])){
@@ -86,7 +86,7 @@ if($productoBD){
 
 
 
-}
+
 
 
 
