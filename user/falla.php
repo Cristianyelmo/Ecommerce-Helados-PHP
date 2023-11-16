@@ -1,7 +1,0 @@
-<?php
-
-alert('boenaas')
-
-
-
-?>
