@@ -105,10 +105,11 @@ mysqli_query($Con,"INSERT INTO `user` (`username`,`email`,`password`
 
 session_start();
 
-unset($_SESSION['errors']);
+
 
     $_SESSION['userxd'] = $Name;
-
+    $newMessage = "Bienvenido $_SESSION[userxd]";
+    $_SESSION['errors']=[$newMessage];
 
 
 

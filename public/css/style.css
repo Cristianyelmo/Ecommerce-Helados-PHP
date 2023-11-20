@@ -186,5 +186,49 @@ body {
 }
 
 
+/* Estilo personalizado para las flechas del carrusel */
+.owl-carousel.owl-dots {
+  display: none !important;
+}
 
- 
+.text-contorno-precio{
+  -webkit-text-stroke: 2px black;
+  color: pink; 
+
+}
+
+.text-pink{
+  color: pink;
+}
+
+.whatsapp-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Ajusta el índice Z para que esté por encima del contenido */
+}
+
+/* Estilo para la imagen de WhatsApp */
+
+
+
+
+#imagen-fixer {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  animation: moverArribaAbajo 2s ease-in-out infinite; /* Puedes ajustar la duración y el tipo de transición según tus necesidades */
+}
+
+
+#imagen-fixer.aparecer {
+  opacity: 1;
+}
+
+@keyframes moverArribaAbajo {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); /* Ajusta la distancia del movimiento hacia arriba */
+  }
+}

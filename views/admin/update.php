@@ -2,11 +2,16 @@
 
 
 <?php
+
 $id=$_GET['ID'];
+
+
+
+
 include '../../config/Config.php';
 
 $Record=mysqli_query($Con,"SELECT * FROM `producto` 
-WHERE id = $id");
+WHERE id =  '$id ");
 
 $data=mysqli_fetch_array($Record);
 
@@ -15,6 +20,26 @@ $data=mysqli_fetch_array($Record);
 
 
 ?>
+
+
+<?php
+
+/* aqui se muestra los mensajes de la session errors si existe */
+if(isset($_SESSION['errors-update']) && count( $_SESSION['errors-update'])!== 0){
+foreach($_SESSION['errors-update'] as $message){
+    echo '<li>' .  $message .   '<li>';
+}
+}
+
+
+
+
+
+
+
+?>
+
+
 
 
 
@@ -28,6 +53,8 @@ $data=mysqli_fetch_array($Record);
 <input name='namexd' type="text" value='<?php echo $data['name']?>' id="campo-texto" class="border-2 shadow-custom border-black bg-transparent p-2 w-full">
 <h2>precio del producto</h2>
  <input type="text"  name='price' id="campo-password" value='<?php echo $data['price']?>'  class="border-2 shadow-custom border-black bg-transparent p-2 w-full">
+ <h2>stock</h2>
+ <input type="number" name='stock' value='<?php echo $data['stock']?>'   class="border-2 shadow-custom border-black bg-transparent p-2 w-full">
  <h2>Imagen del producto</h2>
  <input type="file" name='imagexd'  id="image-input"   class="border-2 shadow-custom border-black bg-transparent p-2 w-full">
 

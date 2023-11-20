@@ -8,7 +8,7 @@ $Name = $_POST['name'];
 $Password = $_POST['password'];
 /* llamas a la base de datos */
 include '../../config/Config.php';
-
+$_SESSION['message-login']=[];
 
 /* verificas que el usuario exista en la base de datos */
 $result = mysqli_query($Con,"SELECT * FROM `user` WHERE (username = '$Name' OR email = '$Name') AND password = '$Password ' AND type = 'user'");
@@ -27,18 +27,19 @@ y redirigime al index.php*/
    
     $fila = mysqli_fetch_assoc($result);
     $_SESSION['userxd'] = $fila['username'];
+    /* se crea una variable para que cambie de valor la respuesta y solo sea una */
+    $newMessage = "Bienvenido $_SESSION[userxd]";
+    $_SESSION['message-login']=[$newMessage];
 
     echo "
     <script>  
-     alert('Sucessfull') 
-     window.location.href='../../views/user/index.php'
+    
+      window.location.href='../../views/user/index.php'
     </script>  
       
       
       
       ";
-
-
 
 
 
@@ -50,10 +51,12 @@ y redirigime al post-delete-admin.php*/
     $fila_admin = mysqli_fetch_assoc($result_admin);
     $_SESSION['adminxd'] = $fila_admin['username'];
 
+    $newMessage = "Bienvenido $_SESSION[adminxd]";
+    $_SESSION['message-login']=[$newMessage];
     echo "
     <script>  
-     alert('Sucessfull') 
-     window.location.href='../../views/admin/post-delete-admin.php'
+    
+      window.location.href='../../views/user/index.php'
     </script>  
       
       
@@ -74,9 +77,12 @@ y redirigime al post-delete-admin.php*/
 else{
 
 /* si no existe ninguna de las 2,redirigime al login devuelta */
+$newMessage = "Email incorrecto";
+$_SESSION['message-login']=[$newMessage];
+
     echo "
     <script>  
-     alert('incorrect email/password') 
+   
       window.location.href='../../views/user/login.php'
     </script>  
       

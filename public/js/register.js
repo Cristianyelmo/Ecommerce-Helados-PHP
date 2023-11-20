@@ -5,7 +5,6 @@ var miInput = document.getElementById('campo-password'); // Reemplaza 'miCampoDe
 
 // Agrega un detector de eventos 'input' al elemento de entrada
 
-
 let typingTimer;
     const doneTypingInterval = 1000;
 
@@ -93,3 +92,9 @@ miInput.addEventListener('blur', () => {
     // Cambia la URL de la imagen
     miImagen.src = '../../public/img/posicion-normal.png';
   });
+
+  /* script para registrar sin imagen */
+
+
+  
+

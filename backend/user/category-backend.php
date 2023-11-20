@@ -12,4 +12,22 @@ if (isset($_POST['price'])) {
     header('Location:../../views/user/category.php');
     exit();  
 }
+
+if (isset($_GET['page'])) {
+    $selectedPage = $_GET['page'];
+    $_SESSION['selected_page'] = $selectedPage;
+} else {
+  
+    $selectedPage = 1;
+    $_SESSION['selected_page'] = $selectedPage;
+}
+
+if(isset($_GET['categoriaxd'])){
+    $_SESSION['filtro_categoria']=$_GET['categoriaxd'];
+    header('Location:../../views/user/category.php');
+}
+
+
+
+
 ?>

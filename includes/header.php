@@ -45,14 +45,26 @@ $count=count($_SESSION['cart']);
 <header class="bg-[url('../../public/img/nubes-header2.png')] h-[140px] sm:h-[180px] md:h-[220px] lg:h-[250px] xl:h-[280px] bg-cover  bg-no-repeat 	  top-0 left-0 z-20">
    
 
-<nav class="md:hidden">
-      <div class="navbar">
-      
-        <div class="container nav-container">
-            <input class="checkbox" type="checkbox" name="" id="" />
-            <div class="flex justify-center pt-3 ">
-<img src='img/Logo.svg' class='pr-2'>
-<div class="flex flex-col">
+
+
+
+   
+
+
+
+
+
+<?php
+/* aca muestra que opciones de iconos van a estar en el header depende de la sessiones que esten o no */
+if(isset($_SESSION['userxd'])){
+
+
+         echo "
+         <nav class='hidden md:block md:flex md:justify-between'>
+
+    <div class='flex justify-center pt-3 ml-8'>
+<img src='../../public/img/Logo.svg' class='pr-2'>
+<div class='flex flex-col'>
   <h1>Creama del Cielo</h1>
   <h2>Heladeria</h2>
 </div>
@@ -60,29 +72,118 @@ $count=count($_SESSION['cart']);
 
 
 
-            <div class="hamburger-lines z-20 ">
-              <span class="line line1"></span>
-              <span class="line line2"></span>
-              <span class="line line3"></span>
+
+
+<ul class='flex list-none mr-8 mt-4 space-x-6'>
+
+         <li><a href='index.php'><span class='material-symbols-outlined ml-[8px]'>
+         home
+         </span> <p> Home</p> </a></li>
+
+
+         <li class='flex'>
+         <a href='../../backend/user/logout.php'>
+         <span class='material-symbols-outlined'>logout</span>
+         <p> Logout</p>
+         </a>
+         </li>
+         
+         <li>
+         <a href='cart.php'>
+         <span class='material-symbols-outlined ml-[8px]' >shopping_cart</span>
+          <p>Cart($count)</p>
+           </a>
+           </li>
+         
+         <li><a href='#'>
+         <div class='flex justify-center mb-[5px]'>
+
+
+         <span class='material-symbols-outlined ml-[8px]'>
+         account_circle
+         
+         </span> 
+         </div>
+         
+         
+         <p> Hola,$_SESSION[userxd]</p></a></a> </li>
+         </ul>
+         </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         <nav class='md:hidden'>
+      <div class='navbar'>
+      
+        <div class='container nav-container'>
+            <input class='checkbox' type='checkbox' name='' id='' />
+            <div class='flex justify-center pt-3 '>
+<img src='../../public/img/Logo.svg' class='pr-2'>
+<div class='flex flex-col'>
+  <h1>Creama del Cielo</h1>
+  <h2>Heladeria</h2>
+</div>
+</div>
+
+
+
+            <div class='hamburger-lines z-20 '>
+              <span class='line line1'></span>
+              <span class='line line2'></span>
+              <span class='line line3'></span>
        
             </div>  
           
-          <div class="menu-items" style="
+          <div class='menu-items' style='
     background: #ffd4d49c;
-">
-            <li><a href="index.php"><span class="material-symbols-outlined">
-home
-</span>  Home </a></li>
-            <li><a href="login.php"><span class="material-symbols-outlined">
-login
-</span> Login</a></li>
-            <li><a href="#"><span class="material-symbols-outlined">
+    
+'>
+<ul class='flex justify-center flex-col items-center'>
+            <li>
+            <a href='index.php'>
+            <span class='material-symbols-outlined'>home</span> 
+             Home </a></li>
+
+
+
+<li>
+<a href='../../backend/user/logout.php'class='flex' >
+<span class='material-symbols-outlined' >logout</span>
+<p> Logout</p>
+</a>
+</li>
+
+<li>
+<a href='#' class='flex'>
+<span class='material-symbols-outlined'>
 account_circle
-</span> Hola,user</a></li>
-            <li><a href="cart.php"><span class="material-symbols-outlined">
-shopping_cart
-</span> Cart (0) </a></li>
-           
+</span>
+ <p> Hola,$_SESSION[userxd]</p>
+ </a>
+ 
+ </li>
+
+<li>
+<a href='cart.php' class='flex'>
+<span class='material-symbols-outlined '>shopping_cart</span>
+ <p>Cart  ($count)</p> 
+ </a>
+ </li>
+</ul>
           </div>
 
        
@@ -95,68 +196,140 @@ shopping_cart
 
    
     </nav>
-
-
-    <nav class="hidden md:block md:flex md:justify-between">
-
-    <div class="flex justify-center pt-3 ml-8">
-<img src='../../public/img/Logo.svg' class='pr-2'>
-<div class="flex flex-col">
-  <h1>Creama del Cielo</h1>
-  <h2>Heladeria</h2>
-</div>
-</div>
-
-
-
-
-
-<ul class="flex list-none mr-8 mt-4 space-x-6">
-
-
-
-
-
-<?php
-/* aca muestra que opciones de iconos van a estar en el header depende de la sessiones que esten o no */
-if(isset($_SESSION['userxd'])){
-
-
-         echo "
-
-         <li><a href='index.php'><span class='material-symbols-outlined ml-[8px]'>
-         home
-         </span> <p> Home</p> </a></li>
-
-
-         <li><a href='../../backend/user/logout.php'><span class='material-symbols-outlined'>
-         logout
-         </span><p> Logout</p</a></li>
          
-         <li><a href='cart.php'><span class='material-symbols-outlined ml-[8px]'>
-         shopping_cart
-         </span> <p>Cart  ($count)</p> </a></li>";
+         
+         
+         ";
 }
 
 else if(isset($_SESSION['adminxd'])){
 
 
   echo "
+  <nav class='hidden md:block md:flex md:justify-between'>
 
-         <li><a href='../user/index.php'><span class='material-symbols-outlined ml-[8px]'>
-         home
-         </span> <p> Home</p> </a></li>
-         <li><a href='post-delete-admin.php'><span class='material-symbols-outlined ml-[8px]'>
-         home
-         </span> <p>Agregar Producto</p> </a></li>
+  <div class='flex justify-center pt-3 ml-8'>
+<img src='../../public/img/Logo.svg' class='pr-2'>
+<div class='flex flex-col'>
+<h1>Creama del Cielo</h1>
+<h2>Heladeria</h2>
+</div>
+</div>
 
-         <li><a href='../../backend/user/logout.php'><span class='material-symbols-outlined'>
-         logout
-         </span><p> Logout</p</a></li>
+
+
+
+
+<ul class='flex list-none mr-8 mt-4 space-x-6'>
+
+         <li>
+         <a href='../user/index.php'>
+         <span class='material-symbols-outlined ml-[8px]'>home</span>
+          <p> Home</p>
+           </a>
+           </li>
+         <li>
+         <a href='../admin/post-delete-admin.php'>
+         <div class='flex justify-center mb-[5px]'>
+         <span class='material-symbols-outlined'>add</span>
+         </div>
+         <p>Agregar Producto</p>
+          </a>
+          </li>
+
+         <li><a href='../../backend/user/logout.php'>
+         <span class='material-symbols-outlined'>logout</span>
+         <p> Logout</p>
+         </a>
+         </li>
+         </ul>
+         </nav>
+
+
+
+
+
+
+
+<nav class='md:hidden'>
+<div class='navbar'>
+
+  <div class='container nav-container'>
+      <input class='checkbox' type='checkbox' name='' id='' />
+      <div class='flex justify-center pt-3 '>
+<img src='../../public/img/Logo.svg' class='pr-2'>
+<div class='flex flex-col'>
+<h1>Creama del Cielo</h1>
+<h2>Heladeria</h2>
+</div>
+</div>
+
+
+
+      <div class='hamburger-lines z-20 '>
+        <span class='line line1'></span>
+        <span class='line line2'></span>
+        <span class='line line3'></span>
+ 
+      </div>  
+    
+    <div class='menu-items' style='
+background: #ffd4d49c;
+'>
+<ul class='flex justify-center flex-col items-center'>
+      <li>
+      <a href='index.php'>
+      <span class='material-symbols-outlined'>home</span> 
+       Home </a></li>
+<li>
+<a href='../../backend/user/logout.php' class='flex'>
+<span class='material-symbols-outlined' class='flex'>logout</span>
+<p> Logout</p></a></li>
+<li>
+<a href='#' class='flex'>
+<span class='material-symbols-outlined ml-[8px]'>account_circle</span> 
+<p> Hola,$_SESSION[adminxd]</p>
+</a>
+ </li>
+<li>
+<a href='../admin/post-delete-admin.php'  class='flex'>
+<span class='material-symbols-outlined'>add</span>
+<p>Agregar Producto</p> 
+</a>
+</li>
+</ul>
+     
+    </div>
+
+ 
+
+
+
+  </div>
+ 
+</div>
+
+
+</nav>
          
        ";;
 }else{
 echo "
+<nav class='hidden md:block md:flex md:justify-between'>
+
+<div class='flex justify-center pt-3 ml-8'>
+<img src='../../public/img/Logo.svg' class='pr-2'>
+<div class='flex flex-col'>
+<h1>Creama del Cielo</h1>
+<h2>Heladeria</h2>
+</div>
+</div>
+
+
+
+
+
+<ul class='flex list-none mr-8 mt-4 space-x-6'>
 <li><a href='index.php'><span class='material-symbols-outlined ml-[8px]'>
          home
          </span> <p> Home</p> </a></li>
@@ -165,7 +338,82 @@ login
 </span><p> Login</p</a></li>
 <li><a href='cart.php'><span class='material-symbols-outlined ml-[8px]'>
          shopping_cart
-         </span> <p>Cart (0)</p> </a></li>";
+         </span> <p>Cart (0)</p> </a></li>
+         </ul>
+         </nav>
+         
+         
+
+         <nav class='md:hidden'>
+<div class='navbar'>
+
+  <div class='container nav-container'>
+      <input class='checkbox' type='checkbox' name='' id='' />
+      <div class='flex justify-center pt-3 '>
+<img src='../../public/img/Logo.svg' class='pr-2'>
+<div class='flex flex-col'>
+<h1>Creama del Cielo</h1>
+<h2>Heladeria</h2>
+</div>
+</div>
+
+
+
+      <div class='hamburger-lines z-20 '>
+        <span class='line line1'></span>
+        <span class='line line2'></span>
+        <span class='line line3'></span>
+ 
+      </div>  
+    
+    <div class='menu-items' style='
+background: #ffd4d49c;
+'>
+<ul class='flex justify-center flex-col items-center'>
+
+
+<li><a href='index.php' class='flex'><span class='material-symbols-outlined ml-[8px]'>
+home
+</span> <p> Home</p> </a></li>
+
+
+
+<li><a href='login.php' class='flex'><span class='material-symbols-outlined ml-[8px]'>
+login
+</span><p> Login</p></a></li>
+
+
+
+<li>
+<a href='cart.php' class='flex'>
+<span class='material-symbols-outlined '>shopping_cart</span>
+ <p>Cart(0)</p> 
+ </a>
+ </li>
+
+
+</ul >
+    </div>
+
+ 
+
+
+
+  </div>
+ 
+</div>
+
+
+</nav>
+         
+         
+         
+         
+         
+         
+         "
+         
+         ;
 }
 
 
@@ -174,30 +422,10 @@ login
 
 
 
-            <li><a href="#"><span class="material-symbols-outlined ml-[8px]">
-account_circle
-</span> <p> Hola,<?php
-/* aqui se muestra que nombre se pone al usuario depende si esta o no */
-if(isset($_SESSION['userxd'])){
-
-
-  echo $_SESSION['userxd'];
-}else if(isset($_SESSION['adminxd'])) {
-
-  echo $_SESSION['adminxd'];
-
-
-}else{
-  echo "user";
-}
-
-
-
-?></p></a></a> </li>
+        
          
 
-      </ul>
-    </nav>
+     
 </header>
 
 

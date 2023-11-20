@@ -1,5 +1,36 @@
 <?php include '../../includes/header.php'?>
+<?php
+/* aqui se muestra los mensajes de la session errors si existe */
 
+if(isset($_SESSION['errors-admin']) && count( $_SESSION['errors-admin'])!== 0){
+    
+foreach($_SESSION['errors-admin'] as $message){
+
+ echo "<div class='whatsapp-container' id='imagen-fixer'>
+ <div class='relative'>
+ <p clas='absolute top-[30px] left-0 z-10'style='
+ position: absolute;
+ top: 40px;
+' id='texto'>$message</p>
+ <img src='../../public/img/dibujo-mensaje2.png' class='whatsapp-icon w-[160px] h-[160px]' alt=''>
+        </div>
+      
+      <!--   <div class='whatsapp-icon w-[560px] h-[560px]'></div> -->
+    </div>";
+
+ 
+
+ 
+}
+}
+
+
+
+
+
+
+
+?>
 <section class="flex justify-center ">
     <div  class="bg-[#FFFFFF] bg-opacity-30 shadow-custom m-3 p-4 w-[500px]" >
     <h2 class="text-4xl text-center font-extrabold">Agregar Producto</h2>
@@ -17,7 +48,8 @@
 
  <h2>Selecciona la categoria</h2>
  <select class="border-2 shadow-custom border-black bg-transparent p-2 w-full" name='Pages'>
-  <option class="border-2 shadow-custom border-black bg-transparent p-2 w-full" value='Helado'>Helado</option>
+  <option class="border-2 shadow-custom border-black bg-transparent p-2 w-full" value='Conos'>Conos</option>
+  <option class="border-2 shadow-custom border-black bg-transparent p-2 w-full" value='Envase'>Envase</option>
   <option class="border-2 shadow-custom border-black bg-transparent p-2 w-full" value='Palito'>Palito</option>
   <option class="border-2 shadow-custom border-black bg-transparent p-2 w-full" value='Postres'>Postres</option>
   <!-- Agrega más opciones si es necesario -->
@@ -79,7 +111,7 @@ foreach ($rows2 as $row) {
                 <td class='border p-2 text-center'>$row[name]</td>
                 <td class='border p-2 text-center'>$row[price]</td>
                 <td class='border p-2 text-center'> $row[stock]</td>
-                <td class='border p-2 text-center'><img src='$row[image]' class='w-[60px]' alt=''></td>
+                <td class='border p-2 text-center'><img src='../../backend/admin/$row[image]' class='w-[60px] h-[60px]' alt=''></td>
                 <td class='border p-2 text-center'>$row[categoria]</td>
                 <td class='border p-2 text-center'><a href='../../backend/admin/delete.php?ID=$row[id]'>Delete</a></td>
                 <td class='border p-2 text-center'><a href='../../views/admin/update.php?ID=$row[id]'>Update</a></td>

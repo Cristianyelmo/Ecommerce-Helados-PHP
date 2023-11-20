@@ -1,48 +1,41 @@
 <?php include '../../includes/header.php'?>
 
 <section class=" ">
-    <h2 class="text-4xl text-center font-extrabold">POSTRES</h2>
+    <h2 class="text-4xl text-center font-extrabold"><?php  echo $_SESSION['filtro_categoria']?></h2>
 <div class="flex justify-center space-x-3 mt-4">
-    <div class="flex">
-    <h3>Price</h3>
-    <span class="material-symbols-outlined">
-expand_more
-</span>
-    </div>
+   
 
 <form action="../../backend/user/category-backend.php" method="POST">
-    
-<input type="number" name='price' value='<?php echo $_SESSION['filtro_precio'] ?>'>
+    <h2 class='text-center mb-[5px]'> Precio hasta:</h2>
+<input type="number" name='price' class="border-2 shadow-custom border-black bg-transparent p-2 w-full" value='<?php if(isset($_SESSION['filtro_precio'])){
+    echo $_SESSION['filtro_precio'] ;
+}else{
+echo '';
+} ?>'>
 
+<div class='flex justify-center mt-[10px]'>
 
-<button type='submit'>buscar</button>
+<button type='submit' class='bg-[#E97C8D] p-4 border border-3 border-black rounded-[40.5px] text-center'>buscar</button>
+</div>
 </form>
 
 
-<div class="flex">
-    <h3>Sort</h3>
-    <span class="material-symbols-outlined">
-expand_more
-</span>
-    </div>
+
 </div>
 
 <!-- flex-wrap productos -->
-<div class="flex flex-wrap justify-center " >
-
+<div class="flex flex-col justify-center " >
+<div class="flex flex-wrap justify-center ">
 <?php
 /* get categoriaxd trae la informacion de que categoria fue seleccionada ,si existe me lo guarda en la session filtro_categoria
 ,si no existe solo mostras categoria,esto lo hice para que si recarga la pagina se guarde el valor de la categoria
 cuando se filtre el precio, pero si se llama a get se actualize el valor */
-if(isset($_GET['categoriaxd'])){
-    $_SESSION['filtro_categoria']=$_GET['categoriaxd'];
-   
-}else{
+
     
     $_SESSION['filtro_categoria'];
-}
 
 
+$_SESSION['selected_page']=1;
 
 
 
@@ -88,28 +81,40 @@ $resultado = mysqli_query($Con, $consulta);
 /* se hace un while iterando y pintando */
 while ($fila=mysqli_fetch_array($resultado)) {
     // Mostrar los elementos en tu página
-    echo "<div class='item pr-4 relative w-[500px] ' style='
-    z-index: -1;
-' >
+    echo "
+    
+   
+    <form action='../../backend/user/insertCart.php' method='POST'>
+    
+    <div class='item pr-4 relative w-[500px] ' >
 
 
 
 <div class=' absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col ' >
- <div class='w-[40px] ml-16'>
- <img src='../../public/img/helado-limon.png '  >
+ <div class='w-[150px] ml-[55px]'>
+ <img src='../../backend/admin/$fila[image] ' class='w-[100px] h-[130px]'  >
  </div>
 <!-- <img src='../../public/img/helado-limon.png ' class='w-[90px]' > -->
 <h2 class='text-center font-extrabold'>$fila[name]</h2>
 <h2 class='text-center font-extrabold'>$fila[price]</h2>
+
 <div class='text-center'>
-<button class='bg-[#E97C8D] p-4 border border-3 border-black rounded-[40.5px] text-center'>Add Cart</button>
+<input type='hidden' name='name' value='$fila[name]'>
+<input type='hidden' name='price' value='$fila[price]'>
+<input type='hidden' name='image' value='$fila[image]'>
+
+<button type='submit' name='addCart' class='bg-[#E97C8D] p-4 border border-3 border-black rounded-[40.5px] text-center'>Add Cartxd</button>
 </div>
+
 </div>
  
 
  <img src='../../public/img/nubes2.png' class='' >
 
-   </div>";
+   </div>
+ 
+   </form>
+   ";
 }
 
 /* se crea una variable para por obtener el numero de cuanto productos hay */
@@ -134,21 +139,30 @@ $resultadoTotalElementos = mysqli_query($Con, $totalElementosQuery);
 /* aqui se obtiene la cantidad exacta  */
 $totalElementos = mysqli_fetch_assoc($resultadoTotalElementos)['total'];
 
-/* se itera mostrando los items para paginar  */
-for ($i = 1; $i <= ceil($totalElementos / $elementosPorPagina); $i++) {
-    echo "<a href='?pagina=$i&categoria=$_SESSION[filtro_categoria]&precio=$_SESSION[filtro_precio]'>$i</a> ";
-}
 
 
 
 ?>
 
+</div>
 
 
+<div class='flex justify-center space-x-3'>
+<?php
 
-
-
-
+/* se itera mostrando los items para paginar  */
+if(isset($_SESSION['filtro_precio'])){
+    for ($i = 1; $i <= ceil($totalElementos / $elementosPorPagina); $i++) {
+    echo "<a class='bg-[#ffc0cb] p-[10px] " . ($_SESSION['selected_page'] == $i ? 'selected' : '') . "' href='?pagina=$i&categoria=$_SESSION[filtro_categoria]&precio=$_SESSION[filtro_precio]'>$i</a> ";
+}
+    
+    }else{
+        for ($i = 1; $i <= ceil($totalElementos / $elementosPorPagina); $i++) {
+            echo "<a class='bg-[#ffc0cb] p-[10px] " . ($_SESSION['selected_page'] == $i ? 'selected' : '') . "' href='?pagina=$i&categoria=$_SESSION[filtro_categoria]'>$i</a> ";
+        }
+    }
+?>
+</div>
 
 
 

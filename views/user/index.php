@@ -2,6 +2,58 @@
 <!-- animacion y presentacion -->
 <section class='flex flex-wrap justify-center ' >
 
+<?php
+/* aqui se muestra los mensajes de la session errors si existe */
+if(isset($_SESSION['message-login']) && count( $_SESSION['message-login'])!== 0){
+    
+foreach($_SESSION['message-login'] as $message){
+
+ echo "<div class='whatsapp-container' id='imagen-fixer'>
+ <div class='relative'>
+ <p clas='absolute top-[30px] left-0 z-10'style='
+ position: absolute;
+ top: 40px;
+' id='texto'>$message</p>
+ <img src='../../public/img/dibujo-mensaje2.png' class='whatsapp-icon w-[160px] h-[160px]' alt=''>
+        </div>
+      
+      <!--   <div class='whatsapp-icon w-[560px] h-[560px]'></div> -->
+    </div>";
+
+ 
+
+ 
+}
+}
+
+
+if(isset($_SESSION['errors']) && count( $_SESSION['errors'])!== 0){
+    
+  foreach($_SESSION['errors'] as $message){
+  
+   echo "<div class='whatsapp-container' id='imagen-fixer'>
+   <div class='relative'>
+   <p clas='absolute top-[30px] left-0 z-10'style='
+   position: absolute;
+   top: 40px;
+  ' id='texto'>$message</p>
+   <img src='../../public/img/dibujo-mensaje2.png' class='whatsapp-icon w-[160px] h-[160px]' alt=''>
+          </div>
+        
+        <!--   <div class='whatsapp-icon w-[560px] h-[560px]'></div> -->
+      </div>";
+  
+   
+  
+   
+  }
+  }
+
+
+
+
+?>
+
 
 
 <div class="relative  flex justify-center  menu-index" style="
@@ -57,63 +109,47 @@
 
 <div class='flex flex-wrap justify-center mt-[90px]'>
 
-  <a href="category.php?categoriaxd=Helado">
-<div class="bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
-<h2 class='text-right font-extrabold text-4xl'>Helados</h2>
-<img src='img/helado-limon.png ' class='h-[520px]' >
+  <a href="../../backend/user/category-backend.php?categoriaxd=Conos" class="bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
 
-</div>
-
-</a>
-
-
-
-
-<a href="category.php?categoriaxd=Palito">
-<div class="relative bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
-<h2 class='text-right font-extrabold text-4xl'>Postres</h2>
-<img src='img/postre.png ' class='h-[320px] '  >
-
-</div>
-
-</a>
-
-
-<div class="bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
-<h2 class='text-right font-extrabold text-4xl'>Helados</h2>
+<h2 class='text-right font-extrabold text-4xl'>Conos</h2>
 <img src='../../public/img/helado-limon.png ' class='h-[520px]' >
 
-</div>
 
-<div class="relative bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
+
+</a>
+
+
+
+
+<a href="../../backend/user/category-backend.php?categoriaxd=Postres" class="relative bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
+
 <h2 class='text-right font-extrabold text-4xl'>Postres</h2>
-<img src='../../public/img/postre.png ' class='h-[320px] '  >
+<img src='../../public/img/postre.png ' class='h-[320px] absolute right-10' >
 
-</div>
 
-<div class="relative bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
-<h2 class='text-right font-extrabold text-4xl'>Postres</h2>
-<img src='../../public/img/postre.png ' class='h-[320px] '  >
 
-</div>
+</a>
 
-<div class="relative bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
-<h2 class='text-right font-extrabold text-4xl'>Postres</h2>
-<img src='../../public/img/postre.png ' class='h-[320px] '  >
+<a href="../../backend/user/category-backend.php?categoriaxd=Envase" class="relative bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
 
-</div>
+<h2 class='text-right font-extrabold text-4xl'>Envase</h2>
+<img src='../../public/img/Envase-cate.png ' class='h-[320px] w-[620px] absolute right-20' >
 
-<div class="relative bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
-<h2 class='text-right font-extrabold text-4xl'>Postres</h2>
-<img src='../../public/img/postre.png ' class='h-[320px] '  >
 
-</div>
 
-<div class="relative bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
-<h2 class='text-right font-extrabold text-4xl'>Postres</h2>
-<img src='../../public/img/postre.png ' class='h-[320px] '  >
+</a>
 
-</div>
+
+</a>
+
+<a href="../../backend/user/category-backend.php?categoriaxd=Palito" class="relative bg-[#F2C0C3] bg-opacity-50 shadow-custom m-3 h-[320px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 overflow-hidden">
+
+<h2 class='text-right font-extrabold text-4xl'>Palito</h2>
+<img src='../../public/img/Palito.png ' class='h-[320px] w-[620px] absolute right-20' >
+
+
+
+</a>
 
 
 

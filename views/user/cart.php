@@ -20,7 +20,8 @@
 
 require '../../vendor/autoload.php';
 use MercadoPago\MercadoPagoConfig;
-
+/* si existe la session user se configura el boton mercado y la session contador */
+if(isset($_SESSION['userxd'])){
 /* se agrega las credenciales del vendedor */
 MercadoPagoConfig::setAccessToken('TEST-3595623694248600-111320-f1fe6a0c6633f5efe8d0d4d76506a75b-424046411');
 
@@ -84,6 +85,7 @@ $preference->auto_return = "approved";
 /* Script de Carrito Session */
 /* se trae la session contador (que viene por inserCart en el post mas) y se guarda en una variable */
 $cantidad=$_SESSION['contador'];
+}
 $total=0;
 $hoy = getdate();
 
@@ -125,7 +127,7 @@ echo "
            
 
 </span>
-<img src='../../backend/admin/$value[productImage]' alt='' class='w-[35px] mr-[10px]'>
+<img src='../../backend/admin/$value[productImage]' alt='' class='w-[500px]  h-[100px] md:h-[200px]    '>
 </div>
 
 </div>
@@ -134,7 +136,7 @@ echo "
 <div>
 
 
-<div class='sm:flex sm:flex-col sm:snap-center sm:ml-[60px] sm:mt-[70px] '>
+<div class='sm:flex sm:flex-col sm:snap-center '>
 <button name='remove' class='bg-transparent'><span class='material-symbols-outlined ml-[230px]'>
 cancel
 </span></button>
@@ -178,6 +180,8 @@ cancel
 ";
 }
 
+}else{
+  echo "<div>Carrito Vacio</div>";
 }
 /* Script de Carrito Session */
 ?>
